@@ -1,0 +1,18 @@
+CONVITE DIGITAL — BELITA & THEODOR (VERSÃO ACTUALIZADA)
+
+Esta versão utiliza o conteúdo do novo PDF fornecido.
+A capa usa a imagem do envelope B&T enviada anteriormente.
+
+1. Extraia o ZIP.
+2. Abra index.html num navegador actualizado para testar.
+3. Para partilhar com convidados, publique a pasta num alojamento HTTPS.
+
+Interacção:
+- Toque no selo B&T da capa para abrir.
+- Depois da animação, deslize para baixo para ver o convite.
+- O botão final abre:
+  https://convitin.com.br/matrimonio-belita-theodor//
+
+Ficheiros:
+- assets/envelope-cover.jpg — envelope inicial.
+- assets/convite-completo.jpg — página integral extraída do novo PDF.

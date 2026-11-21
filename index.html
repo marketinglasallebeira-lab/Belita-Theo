@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f3e9">
+<meta name="description" content="Convite de casamento de Belita & Theodor">
+<title>Belita &amp; Theodor | Convite de Casamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b18a35;--ivory:#f7f3e9;--ink:#383225}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ivory)}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif}
+.cover{min-height:100svh;display:grid;place-items:center;padding:16px;background:radial-gradient(ellipse at center,#fff 0%,#f5f0e5 76%,#e8dfce 100%);perspective:1400px;overflow:hidden}
+.cover-button{position:relative;display:block;width:min(100%,560px);max-height:96svh;padding:0;border:0;background:transparent;cursor:pointer;transform-style:preserve-3d;filter:drop-shadow(0 18px 26px #6b552b30);transition:transform 1.15s cubic-bezier(.2,.72,.18,1),opacity .85s ease}
+.cover-button img{display:block;width:100%;max-height:96svh;object-fit:contain;border-radius:3px}
+.cover-button:focus-visible{outline:3px solid var(--gold);outline-offset:7px}
+.seal-pulse{position:absolute;width:20%;aspect-ratio:1;left:48%;top:72%;border:1px solid #f5df9a;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 0 #c9a24b77;animation:pulse 2s infinite;pointer-events:none}
+@keyframes pulse{70%{box-shadow:0 0 0 13px #c9a24b00}100%{box-shadow:0 0 0 0 #c9a24b00}}
+.cover-hint{position:absolute;left:0;right:0;bottom:3.5%;text-align:center;color:#80632b;font:600 10px Arial,sans-serif;letter-spacing:.2em;text-shadow:0 1px 4px white}
+.cover.opening .cover-button{transform:rotateX(78deg) scale(.92) translateY(-35px);opacity:0;pointer-events:none}
+.invitation{display:none;width:100%;max-width:760px;margin:0 auto;background:#fff;opacity:0}
+.invitation.show{display:block;animation:appear .9s ease forwards}
+@keyframes appear{to{opacity:1}}
+.artwork{display:block;width:100%;height:auto}
+.confirm-area{padding:28px 18px max(38px,env(safe-area-inset-bottom));text-align:center;background:#fffdf8}
+.confirm{display:inline-flex;align-items:center;justify-content:center;min-height:56px;width:min(100%,470px);padding:15px 22px;border-radius:999px;background:linear-gradient(135deg,#8d6925,#d4b66c,#94702c);color:white;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font:600 12px/1.4 Arial,sans-serif;box-shadow:0 9px 22px #77591e33;transition:transform .2s,filter .2s}
+.confirm:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.confirm:focus-visible{outline:3px solid #322715;outline-offset:4px}
+.small{margin:13px 0 0;color:#82775e;font:11px Arial,sans-serif;letter-spacing:.08em}
+@media(min-width:760px){.cover{padding:24px}.cover-button{width:min(430px,76vw)}.invitation{box-shadow:0 0 50px #4c3b1d18}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<section class="cover" id="cover" aria-label="Envelope do convite">
+<button class="cover-button" id="openSeal" type="button" aria-label="Tocar no selo B e T para abrir o convite">
+<img src="assets/envelope-cover.jpg" alt="Envelope marfim com data em relevo e selo dourado B&T">
+<span class="seal-pulse" aria-hidden="true"></span>
+<span class="cover-hint">TOQUE NO SELO B&amp;T PARA ABRIR</span>
+</button>
+</section>
+<article class="invitation" id="invitation" aria-label="Convite de casamento de Belita e Theodor">
+<img class="artwork" src="assets/convite-completo.jpg" alt="Convite de casamento: bênção de Deus e dos pais, Belita e Theodor, calendário, programa e versículo Zacarias 2:5">
+<div class="confirm-area">
+<a class="confirm" href="https://convitin.com.br/matrimonio-belita-theodor//" target="_blank" rel="noopener noreferrer">Clique aqui para confirmar a presença</a>
+<p class="small">BELITA &amp; THEODOR · 18 DE DEZEMBRO DE 2026</p>
+</div>
+</article>
+</main>
+<script>
+const cover=document.getElementById('cover');
+const opener=document.getElementById('openSeal');
+const invitation=document.getElementById('invitation');
+opener.addEventListener('click',()=>{
+  cover.classList.add('opening');
+  window.setTimeout(()=>{
+    cover.hidden=true;
+    invitation.classList.add('show');
+    window.scrollTo({top:0,behavior:'smooth'});
+  },850);
+});
+</script>
+</body>
+</html>
