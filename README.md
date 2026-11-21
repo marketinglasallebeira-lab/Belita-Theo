@@ -30,3 +30,4 @@ https://convitin.com.br/matrimonio-belita-theodor//
 ## Correcção da abertura
 
 Após tocar no selo, o site agora posiciona automaticamente o início do convite no topo do ecrã, mostrando imediatamente a frase «Com a Bênção de Deus e de seus Pais», sem exigir rolagem inicial.
+\n## Ajuste da capa em ecrã inteiro\n\nA capa do envelope ocupa agora toda a largura e altura do ecrã em telemóveis. Em ecrãs maiores, a imagem completa é apresentada centrada, sem cortes.\n
