@@ -26,3 +26,7 @@ Abra `index.html` num navegador actualizado.
 
 O botão de confirmação abre:
 https://convitin.com.br/matrimonio-belita-theodor//
+
+## Correcção da abertura
+
+Após tocar no selo, o site agora posiciona automaticamente o início do convite no topo do ecrã, mostrando imediatamente a frase «Com a Bênção de Deus e de seus Pais», sem exigir rolagem inicial.

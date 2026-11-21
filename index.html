@@ -61,7 +61,17 @@ opener.addEventListener('click',()=>{
   window.setTimeout(()=>{
     cover.hidden=true;
     invitation.classList.add('show');
-    window.scrollTo({top:0,behavior:'smooth'});
+
+    // Espera a página sair de display:none e garante que o início
+    // do convite (a bênção dos pais) fica visível imediatamente.
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        window.scrollTo({top:0,left:0,behavior:'instant'});
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+        invitation.scrollIntoView({block:'start',behavior:'instant'});
+      });
+    });
   },850);
 });
 </script>
