@@ -23,18 +23,17 @@ body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Cormorant Ga
 .cover-hint{position:absolute;left:0;right:0;bottom:max(20px,env(safe-area-inset-bottom));text-align:center;color:#80632b;font:600 10px Arial,sans-serif;letter-spacing:.2em;text-shadow:0 1px 5px #fff,0 0 9px #fff;pointer-events:none}
 .cover.opening .cover-button{transform:rotateX(78deg) scale(.94) translateY(-25px);opacity:0;pointer-events:none}
 .invitation{display:none;width:100%;max-width:760px;margin:0 auto;background:#fff;opacity:0}
-.invitation.show{display:block;animation:appear .65s ease forwards}
+.invitation.show{display:block;animation:appear .45s ease forwards}
 @keyframes appear{to{opacity:1}}
+.blessing{position:relative;margin:0;padding:clamp(24px,5vw,42px) 14px 12px;text-align:center;background:#fff;color:#29251e;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(21px,4.6vw,31px);font-weight:500;line-height:1.15;letter-spacing:.035em}
+.blessing:after{content:"";display:block;width:min(34%,150px);height:1px;margin:17px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .artwork{display:block;width:100%;height:auto;margin:0}
 .confirm-area{padding:28px 18px max(38px,env(safe-area-inset-bottom));text-align:center;background:#fffdf8}
 .confirm{display:inline-flex;align-items:center;justify-content:center;min-height:56px;width:min(100%,470px);padding:15px 22px;border-radius:999px;background:linear-gradient(135deg,#8d6925,#d4b66c,#94702c);color:white;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font:600 12px/1.4 Arial,sans-serif;box-shadow:0 9px 22px #77591e33;transition:transform .2s,filter .2s}
 .confirm:hover{transform:translateY(-2px);filter:brightness(1.06)}
 .confirm:focus-visible{outline:3px solid #322715;outline-offset:4px}
 .small{margin:13px 0 0;color:#82775e;font:11px Arial,sans-serif;letter-spacing:.08em}
-@media(min-width:760px){
- .cover-button img{object-fit:contain;background:#eee7d9}
- .invitation{box-shadow:0 0 50px #4c3b1d18}
-}
+@media(min-width:760px){.cover-button img{object-fit:contain;background:#eee7d9}.invitation{box-shadow:0 0 50px #4c3b1d18}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -47,9 +46,9 @@ body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Cormorant Ga
 <span class="cover-hint">TOQUE NO SELO B&amp;T PARA ABRIR</span>
 </button>
 </section>
-
 <article class="invitation" id="invitation" aria-label="Convite de casamento de Belita e Theodor">
-<img id="invitationArtwork" class="artwork" src="assets/convite-atualizado.jpg" alt="Convite de casamento de Belita e Theodor. Com a bênção de Deus e de seus pais. Programa: cerimónia religiosa às 09h00, casamento civil às 12h00 e copo de água às 17h00.">
+<header class="blessing">Com a Bênção de Deus e de seus Pais</header>
+<img id="invitationArtwork" class="artwork" src="assets/convite-atualizado.jpg" alt="Convite de casamento de Belita e Theodor, com os nomes, calendário, programa e versículo Zacarias 2:5">
 <div class="confirm-area">
 <a class="confirm" href="https://convitin.com.br/matrimonio-belita-theodor//" target="_blank" rel="noopener noreferrer">Clique aqui para confirmar a presença</a>
 <p class="small">BELITA &amp; THEODOR · 18 DE DEZEMBRO DE 2026</p>
@@ -57,31 +56,22 @@ body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Cormorant Ga
 </article>
 </main>
 <script>
-const cover = document.getElementById('cover');
-const opener = document.getElementById('openSeal');
-const invitation = document.getElementById('invitation');
-const artwork = document.getElementById('invitationArtwork');
+const cover=document.getElementById('cover');
+const opener=document.getElementById('openSeal');
+const invitation=document.getElementById('invitation');
 
-opener.addEventListener('click', () => {
-  opener.disabled = true;
+opener.addEventListener('click',()=>{
+  opener.disabled=true;
   cover.classList.add('opening');
-
-  window.setTimeout(async () => {
-    cover.hidden = true;
+  window.setTimeout(()=>{
+    cover.remove();
     invitation.classList.add('show');
-
-    // Aguarda a arte carregar e estar visível antes de posicionar o topo.
-    try { if (artwork.decode) await artwork.decode(); } catch (e) {}
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-        invitation.scrollIntoView({ block: 'start', behavior: 'auto' });
-        window.scrollTo(0, 0);
-      });
-    });
-  }, 780);
+    // A bênção é HTML no primeiro elemento da página: aparece sem
+    // depender do carregamento da imagem ou de qualquer rolagem.
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+    window.scrollTo({top:0,left:0,behavior:'auto'});
+  },780);
 });
 </script>
 </body>
