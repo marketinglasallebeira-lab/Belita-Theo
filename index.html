@@ -12,26 +12,29 @@
 <style>
 :root{--gold:#b18a35;--ivory:#f7f3e9;--ink:#383225}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--ivory)}
+html{scroll-behavior:smooth;background:var(--ivory);scroll-padding-top:0}
 body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif}
-.cover{width:100%;height:100vh;height:100svh;min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:0;margin:0;background:#eee7d9;perspective:1400px;overflow:hidden}
-.cover-button{position:relative;display:block;width:100vw;height:100vh;height:100svh;max-width:none;max-height:none;padding:0;margin:0;border:0;background:transparent;cursor:pointer;transform-style:preserve-3d;filter:none;transition:transform 1.15s cubic-bezier(.2,.72,.18,1),opacity .85s ease;overflow:hidden}
-.cover-button img{display:block;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center center;border-radius:0}
-.cover-button:focus-visible{outline:3px solid var(--gold);outline-offset:7px}
-.seal-pulse{position:absolute;width:20%;aspect-ratio:1;left:48%;top:72%;border:1px solid #f5df9a;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 0 #c9a24b77;animation:pulse 2s infinite;pointer-events:none}
+.cover{position:relative;width:100%;height:100vh;height:100svh;min-height:100vh;min-height:100svh;margin:0;padding:0;display:grid;place-items:center;overflow:hidden;background:#eee7d9;perspective:1400px}
+.cover-button{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;margin:0;border:0;background:transparent;cursor:pointer;transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.2,.72,.18,1),opacity .8s ease;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.cover-button img{display:block;width:100%;height:100%;object-fit:cover;object-position:center center}
+.cover-button:focus-visible{outline:3px solid var(--gold);outline-offset:-7px}
+.seal-pulse{position:absolute;width:21%;aspect-ratio:1;left:48%;top:72%;border:1px solid #f5df9a;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 0 #c9a24b77;animation:pulse 2s infinite;pointer-events:none}
 @keyframes pulse{70%{box-shadow:0 0 0 13px #c9a24b00}100%{box-shadow:0 0 0 0 #c9a24b00}}
-.cover-hint{position:absolute;left:0;right:0;bottom:3.5%;text-align:center;color:#80632b;font:600 10px Arial,sans-serif;letter-spacing:.2em;text-shadow:0 1px 4px white}
-.cover.opening .cover-button{transform:rotateX(78deg) scale(.92) translateY(-35px);opacity:0;pointer-events:none}
+.cover-hint{position:absolute;left:0;right:0;bottom:max(20px,env(safe-area-inset-bottom));text-align:center;color:#80632b;font:600 10px Arial,sans-serif;letter-spacing:.2em;text-shadow:0 1px 5px #fff,0 0 9px #fff;pointer-events:none}
+.cover.opening .cover-button{transform:rotateX(78deg) scale(.94) translateY(-25px);opacity:0;pointer-events:none}
 .invitation{display:none;width:100%;max-width:760px;margin:0 auto;background:#fff;opacity:0}
-.invitation.show{display:block;animation:appear .9s ease forwards}
+.invitation.show{display:block;animation:appear .65s ease forwards}
 @keyframes appear{to{opacity:1}}
-.artwork{display:block;width:100%;height:auto}
+.artwork{display:block;width:100%;height:auto;margin:0}
 .confirm-area{padding:28px 18px max(38px,env(safe-area-inset-bottom));text-align:center;background:#fffdf8}
 .confirm{display:inline-flex;align-items:center;justify-content:center;min-height:56px;width:min(100%,470px);padding:15px 22px;border-radius:999px;background:linear-gradient(135deg,#8d6925,#d4b66c,#94702c);color:white;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font:600 12px/1.4 Arial,sans-serif;box-shadow:0 9px 22px #77591e33;transition:transform .2s,filter .2s}
 .confirm:hover{transform:translateY(-2px);filter:brightness(1.06)}
 .confirm:focus-visible{outline:3px solid #322715;outline-offset:4px}
 .small{margin:13px 0 0;color:#82775e;font:11px Arial,sans-serif;letter-spacing:.08em}
-@media(min-width:760px){.cover-button{width:100vw;height:100vh;height:100svh}.cover-button img{object-fit:contain;background:#eee7d9}.invitation{box-shadow:0 0 50px #4c3b1d18}}
+@media(min-width:760px){
+ .cover-button img{object-fit:contain;background:#eee7d9}
+ .invitation{box-shadow:0 0 50px #4c3b1d18}
+}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -44,8 +47,9 @@ body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Cormorant Ga
 <span class="cover-hint">TOQUE NO SELO B&amp;T PARA ABRIR</span>
 </button>
 </section>
+
 <article class="invitation" id="invitation" aria-label="Convite de casamento de Belita e Theodor">
-<img class="artwork" src="assets/convite-atualizado.jpg" alt="Convite actualizado: bênção de Deus e dos pais, Belita e Theodor, programa às 09h00, 12h00 e 17h00, Zacarias 2:5">
+<img id="invitationArtwork" class="artwork" src="assets/convite-atualizado.jpg" alt="Convite de casamento de Belita e Theodor. Com a bênção de Deus e de seus pais. Programa: cerimónia religiosa às 09h00, casamento civil às 12h00 e copo de água às 17h00.">
 <div class="confirm-area">
 <a class="confirm" href="https://convitin.com.br/matrimonio-belita-theodor//" target="_blank" rel="noopener noreferrer">Clique aqui para confirmar a presença</a>
 <p class="small">BELITA &amp; THEODOR · 18 DE DEZEMBRO DE 2026</p>
@@ -53,26 +57,31 @@ body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Cormorant Ga
 </article>
 </main>
 <script>
-const cover=document.getElementById('cover');
-const opener=document.getElementById('openSeal');
-const invitation=document.getElementById('invitation');
-opener.addEventListener('click',()=>{
+const cover = document.getElementById('cover');
+const opener = document.getElementById('openSeal');
+const invitation = document.getElementById('invitation');
+const artwork = document.getElementById('invitationArtwork');
+
+opener.addEventListener('click', () => {
+  opener.disabled = true;
   cover.classList.add('opening');
-  window.setTimeout(()=>{
-    cover.hidden=true;
+
+  window.setTimeout(async () => {
+    cover.hidden = true;
     invitation.classList.add('show');
 
-    // Espera a página sair de display:none e garante que o início
-    // do convite (a bênção dos pais) fica visível imediatamente.
-    requestAnimationFrame(()=>{
-      requestAnimationFrame(()=>{
-        window.scrollTo({top:0,left:0,behavior:'instant'});
-        document.documentElement.scrollTop=0;
-        document.body.scrollTop=0;
-        invitation.scrollIntoView({block:'start',behavior:'instant'});
+    // Aguarda a arte carregar e estar visível antes de posicionar o topo.
+    try { if (artwork.decode) await artwork.decode(); } catch (e) {}
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        invitation.scrollIntoView({ block: 'start', behavior: 'auto' });
+        window.scrollTo(0, 0);
       });
     });
-  },850);
+  }, 780);
 });
 </script>
 </body>
